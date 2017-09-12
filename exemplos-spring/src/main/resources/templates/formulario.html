@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <h1>Exemplo de formulario</h1>
+    <form action="#" th:action="@{/pessoa/salvar}" 
+	  th:object="${pessoa}" method="post">
+      <div>
+	<label>Nome</label>
+	<input type="text" name="nome" th:field="*{nome}" />
+      </div>
+      <div>
+	<label>Idade</label>
+	<input type="text" name="idade" th:field="*{idade}" />
+      </div>
+      <div>
+	<label>Sexo</label>
+	<label><input type="radio" name="sexo" value="0" th:field="*{sexo}" />
+	  Feminino</label>
+	<label><input type="radio" name="sexo" value="1" th:field="*{sexo}" />
+	  Masculino</label>
+      </div>
+      <div>
+	<label>Preferências</label>
+	<label><input type="checkbox" name="preferencias"
+		      value="Carros" th:field="*{preferencias}" /> Carros</label>
+	<label><input type="checkbox" name="preferencias"
+		      value="Viagens" th:field="*{preferencias}" /> Viagens</label>
+	<label><input type="checkbox" name="preferencias"
+		      value="Gastronomia" th:field="*{preferencias}" /> Gastronomia</label>
+	<label><input type="checkbox" name="preferencias"
+		      value="Tecnologia" th:field="*{preferencias}" /> Tecnologia</label>
+      </div>
+      <div>
+	<label><input type="checkbox" name="contato" 
+		      value="true" th:field="*{contato}" />Receber e-mail?</label>
+      </div>
+      <div>
+	<input type="submit" value="Enviar" />
+      </div>
+    </form>
+  </body>
+</html>

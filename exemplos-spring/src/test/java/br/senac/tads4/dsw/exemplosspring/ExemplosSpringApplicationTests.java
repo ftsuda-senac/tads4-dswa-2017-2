@@ -1,4 +1,4 @@
-package br.senac.tads4.dswa.exemplosspring;
+package br.senac.tads4.dsw.exemplosspring;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

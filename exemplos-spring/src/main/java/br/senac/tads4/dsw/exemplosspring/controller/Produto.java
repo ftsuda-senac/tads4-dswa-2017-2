@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads4.dswa.exemplosspring.controller;
+package br.senac.tads4.dsw.exemplosspring.controller;
 
 import java.math.BigDecimal;
 
