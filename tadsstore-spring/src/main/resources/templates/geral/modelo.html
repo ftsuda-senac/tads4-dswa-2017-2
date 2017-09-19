@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
   <head>
-    <title>TADS Store</title>
+    <title>Modelo - TADS Store</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -37,25 +33,13 @@ and open the template in the editor.
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="container-fluid">
-      <div class="jumbotron">
-	<div style="background-image: url('./img/bolo2.jpg'); background-size: cover; background-repeat: no-repeat; height: 400px; ">
-	  &nbsp;
-	</div>
+    <div layout:fragment="conteudo">
+      <div class="container" style="margin-top: 50px;">
+	<h1>Modelo das telas do TADS Store</h1>
       </div>
     </div>
-    <div class="container">
-      <div class="row">
-	<div class="col-md-6 col-lg-4 well">
-	  <h1>Produto</h1>
-	  <img src="./img/bolo1.png" class="img-thumbnail">
-	  <button type="button" class="btn btn-success btn-lg btn-block">
-	    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Comprar</button>
-	  <button type="button" class="btn btn-info btn-lg btn-block">
-	    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Ver mais</button>
-	</div>
-      </div>
-
-    </div>
+    <footer>
+      <p class="text-center bg-info">&COPY; Senac 2017</p>
+    </footer>
   </body>
 </html>
