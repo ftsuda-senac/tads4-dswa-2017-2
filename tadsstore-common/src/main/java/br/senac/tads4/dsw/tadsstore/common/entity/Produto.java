@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.senac.tads4.dswa.tadsstore.common.entity;
+package br.senac.tads4.dsw.tadsstore.common.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

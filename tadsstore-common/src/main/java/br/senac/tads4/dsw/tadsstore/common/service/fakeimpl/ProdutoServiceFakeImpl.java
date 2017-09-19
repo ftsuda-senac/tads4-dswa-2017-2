@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.senac.tads4.dswa.tadsstore.common.service.fakeimpl;
+package br.senac.tads4.dsw.tadsstore.common.service.fakeimpl;
 
-import br.senac.tads4.dswa.tadsstore.common.entity.Categoria;
-import br.senac.tads4.dswa.tadsstore.common.entity.ImagemProduto;
-import br.senac.tads4.dswa.tadsstore.common.entity.Produto;
-import br.senac.tads4.dswa.tadsstore.common.service.CategoriaService;
-import br.senac.tads4.dswa.tadsstore.common.service.ProdutoService;
+import br.senac.tads4.dsw.tadsstore.common.entity.Categoria;
+import br.senac.tads4.dsw.tadsstore.common.entity.ImagemProduto;
+import br.senac.tads4.dsw.tadsstore.common.entity.Produto;
+import br.senac.tads4.dsw.tadsstore.common.service.CategoriaService;
+import br.senac.tads4.dsw.tadsstore.common.service.ProdutoService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.senac.tads4.dswa.tadsstore.common.service;
+package br.senac.tads4.dsw.tadsstore.common.service;
 
-import br.senac.tads4.dswa.tadsstore.common.entity.Categoria;
-import br.senac.tads4.dswa.tadsstore.common.entity.Produto;
+import br.senac.tads4.dsw.tadsstore.common.entity.Categoria;
+import br.senac.tads4.dsw.tadsstore.common.entity.Produto;
 import java.io.Serializable;
 import java.util.List;
 

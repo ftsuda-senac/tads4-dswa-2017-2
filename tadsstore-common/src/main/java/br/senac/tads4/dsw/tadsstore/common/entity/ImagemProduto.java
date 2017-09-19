@@ -21,81 +21,74 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.senac.tads4.dswa.tadsstore.common.entity;
+package br.senac.tads4.dsw.tadsstore.common.entity;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 
 /**
  *
  * @author fernando.tsuda
  */
-public class Categoria implements Serializable {
 
-  private Integer id;
+public class ImagemProduto implements Serializable {
 
-  private String nome;
+  private Long id;
 
-  private List<Produto> produtos;
+  private String nomeArquivo;
 
-  public Categoria() {
+  private String legenda;
+
+  private Produto produto;
+
+  public ImagemProduto() {
 
   }
 
-  public Categoria(Integer id, String nome) {
+  public ImagemProduto(Long id, String nomeArquivo, String legenda) {
     this.id = id;
-    this.nome = nome;
+    this.nomeArquivo = nomeArquivo;
+    this.legenda = legenda;
   }
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public String getNome() {
-    return nome;
+  public String getNomeArquivo() {
+    return nomeArquivo;
   }
 
-  public void setNome(String nome) {
-    this.nome = nome;
+  public void setNomeArquivo(String nomeArquivo) {
+    this.nomeArquivo = nomeArquivo;
   }
 
-  public List<Produto> getProdutos() {
-    return produtos;
+  public String getLegenda() {
+    return legenda;
   }
 
-  public void setProdutos(List<Produto> produtos) {
-    this.produtos = produtos;
+  public void setLegenda(String legenda) {
+    this.legenda = legenda;
+  }
+
+  public Produto getProduto() {
+    return produto;
+  }
+
+  public void setProduto(Produto produto) {
+    this.produto = produto;
+  }
+
+  public String getUrlArquivo() {
+    return "http://localhost:8080/imagens/" + nomeArquivo;
   }
 
   @Override
   public String toString() {
-    return "Categoria{" + "id=" + id + ", nome=" + nome + '}';
+    return "ImagemProduto{" + "id=" + id + ", legenda=" + legenda + ", nomeArquivo=" + nomeArquivo + '}';
   }
 
-  @Override
-  public int hashCode() {
-    int hash = 3;
-    hash = 47 * hash + Objects.hashCode(this.id);
-    return hash;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final Categoria other = (Categoria) obj;
-    if (!Objects.equals(this.id, other.id)) {
-      return false;
-    }
-    return true;
-  }
 }
