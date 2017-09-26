@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -31,9 +32,17 @@ public class CompraController {
 
   @RequestMapping("/adicionar/{id}")
   public ModelAndView adicionarProduto(
-	  @PathVariable("id") long idProduto) {
+	  @PathVariable("id") long idProduto,
+	  RedirectAttributes redirectAttributes) {
     Produto p = servico.obter(idProduto);
     carrinho.add(p);
+    redirectAttributes.addFlashAttribute("mensagem", 
+	    "Produto " + p.getNome() + " adicionado com sucesso");
+    return new ModelAndView("redirect:/compra");
+  }
+  
+  @RequestMapping
+  public ModelAndView mostrarCarrinho() {
     return new ModelAndView("compra/carrinho");
   }
   

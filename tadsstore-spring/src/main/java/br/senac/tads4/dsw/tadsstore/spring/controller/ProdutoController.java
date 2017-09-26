@@ -24,7 +24,7 @@ public class ProdutoController {
 
   private ProdutoService service = new ProdutoServiceFakeImpl();
 
-  @RequestMapping("/")
+  @RequestMapping
   public ModelAndView listar() {
     List<Produto> lista = service.listar(0, 100);
     return new ModelAndView("produto/lista")

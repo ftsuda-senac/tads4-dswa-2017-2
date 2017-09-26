@@ -10,18 +10,23 @@
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
       </div>
     </div>
+    <div class="alert alert-success" role="alert" th:if="${mensagem != null}">
+      <h3 th:text="${mensagem}"></h3>
+    </div>
     <div class="container">
       <table class="table table-stripped">
 	<thead>
 	  <tr>
 	    <th>ID</th>
 	    <th>Nome</th>
+	    <th>Preço</th>
 	  </tr>
 	</thead>
 	<tbody>
 	  <tr th:each="p : ${@compraController.carrinho}">
 	    <td th:text="${p.id}">1</td>
 	    <td th:text="${p.nome}">Teste</td>
+	    <td th:text="${#numbers.formatCurrency(p.preco)}"></td>
 	  </tr>
 	</tbody>
       </table>
