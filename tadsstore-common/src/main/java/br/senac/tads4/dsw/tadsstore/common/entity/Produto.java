@@ -28,6 +28,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -37,10 +40,13 @@ public class Produto implements Serializable {
 
   private Long id;
 
+  @Min(value = 1, message = "Nome deve ser preenchido")
   private String nome;
 
+  @Min(value = 1, message = "Descricao deve ser preenchida")
   private String descricao;
 
+  @Digits(integer = 6, fraction = 2)
   private BigDecimal preco;
 
   private Date dtCadastro;
@@ -48,7 +54,7 @@ public class Produto implements Serializable {
   private List<Categoria> categorias;
 
   private List<ImagemProduto> imagens;
-  
+
   private String observacoes;
 
   //private List<ItemCompra> itensCompra;
