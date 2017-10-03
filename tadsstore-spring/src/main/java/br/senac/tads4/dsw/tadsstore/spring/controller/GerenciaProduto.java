@@ -32,11 +32,10 @@ public class GerenciaProduto {
   @RequestMapping(value = "/incluir", method = RequestMethod.POST)
   public ModelAndView incluir(@ModelAttribute("produto") @Valid Produto p,
 	  BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-    if (bindingResult.hasErrors()) {
+    if (bindingResult.hasErrors() || bindingResult.hasFieldErrors()) {
       return new ModelAndView("produto/input");
     }
-    redirectAttributes.addFlashAttribute("msgSucesso", 
-	    "Produto cadastrado com sucesso");
+    redirectAttributes.addFlashAttribute("msgSucesso", p.getNome());
     return new ModelAndView("redirect:/gerenciamento/produto");
   }
 }

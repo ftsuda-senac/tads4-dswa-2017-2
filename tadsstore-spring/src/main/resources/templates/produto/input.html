@@ -13,24 +13,27 @@ and open the template in the editor.
   <body>
     <h1>Cadastro de produto</h1>
     <div th:if="${msgSucesso}">
-      <h2 th:text="${msgSucesso}"></h2>
+      <h2 th:text="#{produto.inclusao.sucesso(${msgSucesso})}"></h2>
     </div>
     <div>
       <form th:action="@{/gerenciamento/produto/incluir}" 
 	    th:object="${produto}" method="post" novalidate>
 	<div>
-	  <label>Nome</label> 
-	  <input type="text" name="nome" th:field="*{nome}" required />
+	  <label th:text="#{produto.nome.label}">Nome</label> 
+	  <input type="text" name="nome" th:field="*{nome}" required 
+		 th:placeholder="#{produto.nome.placeholder}" />
 	  <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
 	</div>
 	<div>
-	  <label>Descricao</label> 
-	  <textarea name="descricao" th:field="*{descricao}" required></textarea>
+	  <label th:text="#{produto.descricao.label}">Descricao</label> 
+	  <textarea name="descricao" th:field="*{descricao}" required
+		    th:placeholder="#{produto.descricao.placeholder}"></textarea>
 	  <p th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></p>
 	</div>
 	<div>
-	  <label>Preco</label>
-	  <input type="text" name="preco" th:field="*{preco}" required />
+	  <label th:text="#{produto.preco.label}">Preco</label>
+	  <input type="text" name="preco" th:field="*{preco}" required
+		th:placeholder="#{produto.preco.placeholder}" />
 	  <p th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></p>
 	</div>
 	

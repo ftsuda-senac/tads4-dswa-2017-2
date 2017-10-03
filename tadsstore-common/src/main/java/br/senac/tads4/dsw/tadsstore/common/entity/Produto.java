@@ -40,13 +40,13 @@ public class Produto implements Serializable {
 
   private Long id;
 
-  @Min(value = 1, message = "Nome deve ser preenchido")
+  @NotNull(message = "{produto.nome.erro}")
   private String nome;
 
-  @Min(value = 1, message = "Descricao deve ser preenchida")
+  @NotNull(message = "{produto.descricao.erro}")
   private String descricao;
 
-  @Digits(integer = 6, fraction = 2)
+  @Digits(integer = 6, fraction = 2, message = "{produto.preco.erro}")
   private BigDecimal preco;
 
   private Date dtCadastro;
