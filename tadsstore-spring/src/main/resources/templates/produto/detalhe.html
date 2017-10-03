@@ -23,7 +23,8 @@
 	  <p th:text="${produto.descricao}">Descrição do produto</p>
 	  <h3 th:text="${#numbers.formatCurrency(produto.preco)}">R$ 99,99</h3>
 	  <button type="button" class="btn btn-success btn-lg btn-block">
-	    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Comprar</button>
+	    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
+	    <span th:text="#{acao.comprar}">Comprar</span></button>
 	</div>
       </div>
 

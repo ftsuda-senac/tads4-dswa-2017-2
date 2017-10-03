@@ -20,13 +20,14 @@
 	     th:href="@{/compra/adicionar/{id}(id=${p.id})}"
 	     class="btn btn-success btn-lg btn-block">
 	    <span class="glyphicon glyphicon-ok" aria-hidden="true">
-	    </span> Comprar
+	    </span> <span th:text="#{acao.comprar}">Comprar</span>
 	  </a>
 
 	  <a href="#" role="button" 
 	     th:href="@{/produto/{id}(id=${p.id})}" 
 	     class="btn btn-info btn-lg btn-block">
-	    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Ver mais
+	    <span class="glyphicon glyphicon-info-sign" aria-hidden="true">
+	    </span> <span th:text="#{acao.vermais}">Ver mais</span>
 	  </a>
 	</div>
       </div>
