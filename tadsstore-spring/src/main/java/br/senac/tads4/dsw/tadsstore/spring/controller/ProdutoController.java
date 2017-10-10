@@ -9,6 +9,7 @@ import br.senac.tads4.dsw.tadsstore.common.entity.Produto;
 import br.senac.tads4.dsw.tadsstore.common.service.ProdutoService;
 import br.senac.tads4.dsw.tadsstore.common.service.fakeimpl.ProdutoServiceFakeImpl;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/produto")
 public class ProdutoController {
 
-  private ProdutoService service = new ProdutoServiceFakeImpl();
+  @Autowired
+  private ProdutoService service;
 
   @RequestMapping
   public ModelAndView listar() {

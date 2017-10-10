@@ -25,6 +25,7 @@
     <thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
     <thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
     <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+    <hibernate.version>5.2.11.Final</hibernate.version>
   </properties>
 
   <dependencies>
@@ -41,9 +42,20 @@
       <artifactId>spring-boot-starter-validation</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
       <groupId>br.senac.tads4.dsw</groupId>
       <artifactId>tadsstore-common</artifactId>
       <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbyclient</artifactId>
+      <version>10.13.1.1</version>
+      <scope>runtime</scope>
     </dependency>
 
     <dependency>

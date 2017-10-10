@@ -28,33 +28,68 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author fernando.tsuda
  */
+@Entity
+@Table(name = "TB_PRODUTO")
 public class Produto implements Serializable {
 
+  @Id
+  @Column(name = "ID_PRODUTO")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Column(name = "NM_PRODUTO", length = 100, nullable = false)
   @NotNull(message = "{produto.nome.erro}")
   private String nome;
 
+  @Column(name = "DS_PRODUTO", length = 1000, nullable = false)
   @NotNull(message = "{produto.descricao.erro}")
   private String descricao;
 
+  @Column(name = "VL_PRODUTO", precision = 6, scale = 2, nullable = false)
   @Digits(integer = 6, fraction = 2, message = "{produto.preco.erro}")
   private BigDecimal preco;
 
+  @Column(name = "DT_CADASTRO", nullable = false)
+  @Temporal(TemporalType.TIMESTAMP)
   private Date dtCadastro;
 
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "TB_PRODUTO_CATEGORIA",
+	  joinColumns = {
+	    @JoinColumn(name = "ID_PRODUTO")
+	  },
+	  inverseJoinColumns = {
+	    @JoinColumn(name = "ID_CATEGORIA")
+	  })
   private List<Categoria> categorias;
 
+  @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY,
+	  cascade = {CascadeType.REMOVE})
   private List<ImagemProduto> imagens;
 
+  @Transient
   private String observacoes;
 
   //private List<ItemCompra> itensCompra;
