@@ -22,6 +22,15 @@
 	  <h2 th:text="${produto.nome}">Produto</h2>
 	  <p th:text="${produto.descricao}">Descrição do produto</p>
 	  <h3 th:text="${#numbers.formatCurrency(produto.preco)}">R$ 99,99</h3>
+	  <p>Categorias</p>
+	  <ul th:each="c : ${produto.categorias}">
+	    <li th:text="${c.nome}"></li>
+	  </ul>
+	  <p>Imagens</p>
+	  <ul th:each="i : ${produto.imagens}">
+	      <li th:text="${i.nomeArquivo}"></li>
+	  </ul>
+	  
 	  <button type="button" class="btn btn-success btn-lg btn-block">
 	    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
 	    <span th:text="#{acao.comprar}">Comprar</span></button>

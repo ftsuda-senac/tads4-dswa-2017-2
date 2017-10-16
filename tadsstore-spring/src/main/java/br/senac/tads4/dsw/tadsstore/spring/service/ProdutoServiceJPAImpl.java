@@ -8,24 +8,29 @@ package br.senac.tads4.dsw.tadsstore.spring.service;
 import br.senac.tads4.dsw.tadsstore.common.entity.Categoria;
 import br.senac.tads4.dsw.tadsstore.common.entity.Produto;
 import br.senac.tads4.dsw.tadsstore.common.service.ProdutoService;
-import br.senac.tads4.dsw.tadsstore.spring.repository.ProdutoRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author fernando.tsuda
  */
-@Service
+@Repository
 public class ProdutoServiceJPAImpl implements ProdutoService {
   
-  @Autowired
-  private ProdutoRepository repository;
+  @PersistenceContext
+  private EntityManager entityManager;
 
   @Override
   public List<Produto> listar(int offset, int quantidade) {
-    return repository.listar();
+    Query query = entityManager.createQuery(
+	    "SELECT DISTINCT p FROM Produto p "
+	    + "LEFT JOIN FETCH p.categorias "
+	    + "LEFT JOIN FETCH p.imagens");
+    return query.getResultList();
   }
 
   @Override
@@ -35,7 +40,13 @@ public class ProdutoServiceJPAImpl implements ProdutoService {
 
   @Override
   public Produto obter(long idProduto) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Query query = entityManager.createQuery(
+	    "SELECT DISTINCT p FROM Produto p "
+	    + "LEFT JOIN FETCH p.categorias "
+	    + "LEFT JOIN FETCH p.imagens "
+	    + "WHERE p.id = :idProd")
+	.setParameter("idProd", idProduto);
+    return (Produto) query.getSingleResult();
   }
 
   @Override

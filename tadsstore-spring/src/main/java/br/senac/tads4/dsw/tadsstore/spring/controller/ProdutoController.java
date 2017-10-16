@@ -6,6 +6,7 @@
 package br.senac.tads4.dsw.tadsstore.spring.controller;
 
 import br.senac.tads4.dsw.tadsstore.common.entity.Produto;
+import br.senac.tads4.dsw.tadsstore.common.service.CategoriaService;
 import br.senac.tads4.dsw.tadsstore.common.service.ProdutoService;
 import br.senac.tads4.dsw.tadsstore.common.service.fakeimpl.ProdutoServiceFakeImpl;
 import java.util.List;
@@ -25,12 +26,16 @@ public class ProdutoController {
 
   @Autowired
   private ProdutoService service;
+  
+  @Autowired
+  private CategoriaService categoriaService;
 
   @RequestMapping
   public ModelAndView listar() {
     List<Produto> lista = service.listar(0, 100);
     return new ModelAndView("produto/lista")
-	    .addObject("itens", lista);
+	    .addObject("itens", lista)
+	    .addObject("categorias", categoriaService.listar());
   }
 
   @RequestMapping("/{id}")

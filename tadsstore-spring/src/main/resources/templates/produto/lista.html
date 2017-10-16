@@ -12,6 +12,11 @@
     </div>
     <div class="container">
       <div class="row">
+	<ul th:each="c : ${categorias}">
+	  <li><a th:href="@{/lista/{cat}(cat=${c.nome})}" th:text="${c.nome}"></a></li>
+	</ul>
+      </div>
+      <div class="row">
 	<div class="col-md-6 col-lg-4 well" th:each="p : ${itens}">
 	  <h2 th:text="${p.nome}">Produto</h2>
 	  <img src="./img/bolo1.png" th:src="@{/img/bolo1.png}" class="img-thumbnail">

@@ -34,6 +34,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.LinkedHashSet;
 import java.util.Map;
 
 
@@ -55,37 +57,39 @@ public class ProdutoServiceFakeImpl implements ProdutoService {
           + "Cras posuere tempor lectus, ac porttitor tellus maximus vel.";
 
   static {
+    /*
     CategoriaService categorias = new CategoriaServiceFakeImpl();
     Produto produto = new Produto(1L, "Floresta negra",
             DESCRICAO_PADRAO,
             new BigDecimal(100), new Date(),
-            Arrays.asList(new ImagemProduto(1L, "Bla bla bla", "imagem01a.jpg"), new ImagemProduto(2L, "Xpto Xpto", "imagem01b.jpg"), new ImagemProduto(3L, "Chola mais", "imagem01c.jpg")),
-            Arrays.asList(categorias.obter(1), categorias.obter(3)));
+            new LinkedHashSet<ImagemProduto>(Arrays.asList(new ImagemProduto(1L, "Bla bla bla", "imagem01a.jpg"), new ImagemProduto(2L, "Xpto Xpto", "imagem01b.jpg"), new ImagemProduto(3L, "Chola mais", "imagem01c.jpg"))),
+            new LinkedHashSet<Categoria>(Arrays.asList(categorias.obter(1), categorias.obter(3))));
     MAPA_PRODUTOS.put(produto.getId(), produto);
     produto = new Produto(2L, "Torta de morango",
             DESCRICAO_PADRAO,
             new BigDecimal(90), new Date(),
-            Arrays.asList(new ImagemProduto(4L, "Bla bla bla", "imagem02a.jpg"), new ImagemProduto(5L, "Xpto Xpto", "imagem02b.jpg")),
+            new LinkedHashSet<ImagemProduto>(Arrays.asList(new ImagemProduto(4L, "Bla bla bla", "imagem02a.jpg"), new ImagemProduto(5L, "Xpto Xpto", "imagem02b.jpg"))),
             Arrays.asList(categorias.obter(1), categorias.obter(3)));
     MAPA_PRODUTOS.put(produto.getId(), produto);
     produto = new Produto(3L, "Sonho de valsa",
             DESCRICAO_PADRAO,
             new BigDecimal(110), new Date(),
-            Arrays.asList(new ImagemProduto(6L, "Bla bla bla", "imagem03a.jpg")),
-            Arrays.asList(categorias.obter(1), categorias.obter(3), categorias.obter(6)));
+           new LinkedHashSet<ImagemProduto>(Arrays.asList(new ImagemProduto(6L, "Bla bla bla", "imagem03a.jpg"))),
+            new LinkedHashSet<Categoria>(Arrays.asList(categorias.obter(1), categorias.obter(3), categorias.obter(6))));
     MAPA_PRODUTOS.put(produto.getId(), produto);
     produto = new Produto(4L, "Morango com leite condensado",
             DESCRICAO_PADRAO,
             new BigDecimal(105), new Date(),
-            Arrays.asList(new ImagemProduto(7L, "Bla bla bla", "imagem04a.jpg"), new ImagemProduto(8L, "Xpto Xpto", "imagem04b.jpg")),
-            Arrays.asList(categorias.obter(1), categorias.obter(4)));
+            new LinkedHashSet<ImagemProduto>(Arrays.asList(new ImagemProduto(7L, "Bla bla bla", "imagem04a.jpg"), new ImagemProduto(8L, "Xpto Xpto", "imagem04b.jpg"))),
+            new LinkedHashSet<Categoria>(Arrays.asList(categorias.obter(1), categorias.obter(4))));
     MAPA_PRODUTOS.put(produto.getId(), produto);
     produto = new Produto(5L, "Abacaxi com coco",
             DESCRICAO_PADRAO,
             new BigDecimal(85), new Date(),
-            Arrays.asList(new ImagemProduto(9L, "Bla bla bla", "imagem04a.jpg"), new ImagemProduto(10L, "Xpto Xpto", "imagem04b.jpg")),
-            Arrays.asList(categorias.obter(1), categorias.obter(5), categorias.obter(7), categorias.obter(8)));
+            new LinkedHashSet<ImagemProduto>(Arrays.asList(new ImagemProduto(9L, "Bla bla bla", "imagem04a.jpg"), new ImagemProduto(10L, "Xpto Xpto", "imagem04b.jpg"))),
+            new LinkedHashSet<Categoria>(Arrays.asList(categorias.obter(1), categorias.obter(5), categorias.obter(7), categorias.obter(8))));
     MAPA_PRODUTOS.put(produto.getId(), produto);
+*/
   }
 
   @Override
@@ -95,14 +99,14 @@ public class ProdutoServiceFakeImpl implements ProdutoService {
 
   @Override
   public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade) {
-    List<Produto> lista = new ArrayList<Produto>();
+    Set<Produto> lista = new LinkedHashSet<Produto>();
     for (Map.Entry<Long, Produto> entry : MAPA_PRODUTOS.entrySet()) {
       Produto p = entry.getValue();
       if (p.getCategorias().contains(categoria)) {
         lista.add(p);
       }
     }
-    return lista;
+    return Arrays.asList(lista.toArray(new Produto[1]));
   }
 
   @Override

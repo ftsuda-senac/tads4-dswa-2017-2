@@ -26,7 +26,7 @@ package br.senac.tads4.dsw.tadsstore.common.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -83,11 +83,11 @@ public class Produto implements Serializable {
 	  inverseJoinColumns = {
 	    @JoinColumn(name = "ID_CATEGORIA")
 	  })
-  private List<Categoria> categorias;
+  private Set<Categoria> categorias;
 
   @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY,
 	  cascade = {CascadeType.REMOVE})
-  private List<ImagemProduto> imagens;
+  private Set<ImagemProduto> imagens;
 
   @Transient
   private String observacoes;
@@ -105,7 +105,7 @@ public class Produto implements Serializable {
     this.dtCadastro = dtCadastro;
   }
 
-  public Produto(Long id, String nome, String descricao, BigDecimal preco, Date dtCadastro, List<ImagemProduto> imagens, List<Categoria> categorias) {
+  public Produto(Long id, String nome, String descricao, BigDecimal preco, Date dtCadastro, Set<ImagemProduto> imagens, Set<Categoria> categorias) {
     this.id = id;
     this.nome = nome;
     this.descricao = descricao;
@@ -155,19 +155,19 @@ public class Produto implements Serializable {
     this.dtCadastro = dtCadastro;
   }
 
-  public List<Categoria> getCategorias() {
+  public Set<Categoria> getCategorias() {
     return categorias;
   }
 
-  public void setCategorias(List<Categoria> categorias) {
+  public void setCategorias(Set<Categoria> categorias) {
     this.categorias = categorias;
   }
 
-  public List<ImagemProduto> getImagens() {
+  public Set<ImagemProduto> getImagens() {
     return imagens;
   }
 
-  public void setImagens(List<ImagemProduto> imagens) {
+  public void setImagens(Set<ImagemProduto> imagens) {
     this.imagens = imagens;
   }
 //
