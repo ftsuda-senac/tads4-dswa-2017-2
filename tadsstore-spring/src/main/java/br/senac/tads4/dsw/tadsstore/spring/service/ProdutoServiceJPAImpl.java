@@ -10,9 +10,11 @@ import br.senac.tads4.dsw.tadsstore.common.entity.Produto;
 import br.senac.tads4.dsw.tadsstore.common.service.ProdutoService;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -34,8 +36,16 @@ public class ProdutoServiceJPAImpl implements ProdutoService {
   }
 
   @Override
-  public List<Produto> listarPorCategoria(Categoria categoria, int offset, int quantidade) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  public List<Produto> listarPorCategoria(Categoria categoria, 
+	  int offset, int quantidade) {
+    Query query = entityManager.createQuery(
+	    "SELECT DISTINCT p FROM Produto p "
+	    + "LEFT JOIN FETCH p.categorias "
+	    + "LEFT JOIN FETCH p.imagens "
+	    + "INNER JOIN p.categorias c "
+	    + "WHERE c.id = :idCat")
+	    .setParameter("idCat", categoria.getId());
+    return query.getResultList();
   }
 
   @Override
@@ -50,18 +60,34 @@ public class ProdutoServiceJPAImpl implements ProdutoService {
   }
 
   @Override
+  //@Transactional
   public void incluir(Produto p) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //EntityTransaction transacao = entityManager.getTransaction();
+    try {
+      //transacao.begin();
+//      for (Categoria c : p.getCategorias()) {
+//	if (c.getId() != null) {
+//	  entityManager.merge(c);
+//	} else {
+//	  entityManager.persist(c);
+//	}
+//      }
+      entityManager.persist(p);
+     // transacao.commit();
+    } catch(Exception e) {
+     // transacao.rollback();
+    }
   }
 
   @Override
   public void alterar(Produto p) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    p = entityManager.merge(p);
   }
 
   @Override
   public void remover(long idProduto) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Produto p = entityManager.find(Produto.class, idProduto);
+    entityManager.remove(p);
   }
 
 }

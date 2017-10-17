@@ -36,6 +36,14 @@ and open the template in the editor.
 		th:placeholder="#{produto.preco.placeholder}" />
 	  <p th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}"></p>
 	</div>
+	<div>
+	  <ul th:each="c : ${categorias}">
+	    <li><label>
+		<input type="checkbox" th:value="${c}" th:field="*{categorias}" />
+		<span th:text="${c.nome}"></span></label></li>
+	  </ul>
+	</div>
+	  
 	
 	<div><input type="submit" value="Enviar" /></div>
       </form>

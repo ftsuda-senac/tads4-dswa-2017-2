@@ -13,7 +13,7 @@
     <div class="container">
       <div class="row">
 	<ul th:each="c : ${categorias}">
-	  <li><a th:href="@{/lista/{cat}(cat=${c.nome})}" th:text="${c.nome}"></a></li>
+	  <li><a th:href="@{/produto/filtro/{cat}(cat=${c.id})}" th:text="${c.nome}"></a></li>
 	</ul>
       </div>
       <div class="row">

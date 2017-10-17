@@ -5,6 +5,7 @@
  */
 package br.senac.tads4.dsw.tadsstore.spring.controller;
 
+import br.senac.tads4.dsw.tadsstore.common.entity.Categoria;
 import br.senac.tads4.dsw.tadsstore.common.entity.Produto;
 import br.senac.tads4.dsw.tadsstore.common.service.CategoriaService;
 import br.senac.tads4.dsw.tadsstore.common.service.ProdutoService;
@@ -33,6 +34,16 @@ public class ProdutoController {
   @RequestMapping
   public ModelAndView listar() {
     List<Produto> lista = service.listar(0, 100);
+    return new ModelAndView("produto/lista")
+	    .addObject("itens", lista)
+	    .addObject("categorias", categoriaService.listar());
+  }
+  
+  @RequestMapping("/filtro/{idCat}")
+  public ModelAndView listarComFiltro(
+	  @PathVariable("idCat") int idCategoria) {
+    Categoria categoria = categoriaService.obter(idCategoria);
+    List<Produto> lista = service.listarPorCategoria(categoria, 0, 100);
     return new ModelAndView("produto/lista")
 	    .addObject("itens", lista)
 	    .addObject("categorias", categoriaService.listar());
