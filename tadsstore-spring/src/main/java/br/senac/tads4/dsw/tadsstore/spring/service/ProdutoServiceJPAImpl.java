@@ -60,31 +60,19 @@ public class ProdutoServiceJPAImpl implements ProdutoService {
   }
 
   @Override
-  //@Transactional
+  @Transactional
   public void incluir(Produto p) {
-    //EntityTransaction transacao = entityManager.getTransaction();
-    try {
-      //transacao.begin();
-//      for (Categoria c : p.getCategorias()) {
-//	if (c.getId() != null) {
-//	  entityManager.merge(c);
-//	} else {
-//	  entityManager.persist(c);
-//	}
-//      }
-      entityManager.persist(p);
-     // transacao.commit();
-    } catch(Exception e) {
-     // transacao.rollback();
-    }
+    entityManager.persist(p);
   }
 
   @Override
+  @Transactional
   public void alterar(Produto p) {
     p = entityManager.merge(p);
   }
 
   @Override
+  @Transactional
   public void remover(long idProduto) {
     Produto p = entityManager.find(Produto.class, idProduto);
     entityManager.remove(p);

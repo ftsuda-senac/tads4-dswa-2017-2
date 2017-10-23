@@ -12,12 +12,14 @@ and open the template in the editor.
   </head>
   <body>
     <h1>Cadastro de produto</h1>
+    
     <div th:if="${msgSucesso}">
       <h2 th:text="#{produto.inclusao.sucesso(${msgSucesso})}"></h2>
     </div>
     <div>
       <form th:action="@{/gerenciamento/produto/incluir}" 
 	    th:object="${produto}" method="post" novalidate>
+	<input type="hidden" name="id" th:field="*{id}" />
 	<div>
 	  <label th:text="#{produto.nome.label}">Nome</label> 
 	  <input type="text" name="nome" th:field="*{nome}" required 
@@ -39,13 +41,18 @@ and open the template in the editor.
 	<div>
 	  <ul th:each="c : ${categorias}">
 	    <li><label>
-		<input type="checkbox" th:value="${c}" th:field="*{categorias}" />
+		<input type="checkbox" th:value="${c.id}" th:field="*{idsCategorias}" />
 		<span th:text="${c.nome}"></span></label></li>
 	  </ul>
 	</div>
 	  
 	
 	<div><input type="submit" value="Enviar" /></div>
+      </form>
+    </div>
+    <div th:if="${produto.id != null}">
+      <form th:action="@{/gerenciamento/produto/excluir/{id}(id=${produto.id})}" method="post">
+	<button type="submit">Apagar</button>
       </form>
     </div>
   </body>

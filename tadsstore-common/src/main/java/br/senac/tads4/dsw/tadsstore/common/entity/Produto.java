@@ -88,6 +88,9 @@ public class Produto implements Serializable {
   @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY,
 	  cascade = {CascadeType.REMOVE})
   private Set<ImagemProduto> imagens;
+  
+  @Transient
+  private Set<Integer> idsCategorias;
 
   @Transient
   private String observacoes;
@@ -178,6 +181,14 @@ public class Produto implements Serializable {
 //  public void setItensCompra(List<ItemCompra> itensCompra) {
 //    this.itensCompra = itensCompra;
 //  }
+
+  public Set<Integer> getIdsCategorias() {
+    return idsCategorias;
+  }
+
+  public void setIdsCategorias(Set<Integer> idsCategorias) {
+    this.idsCategorias = idsCategorias;
+  }
 
   @Override
   public String toString() {
