@@ -7,10 +7,10 @@ package br.senac.tads4.dsw.tadsstore.spring.service;
 
 import br.senac.tads4.dsw.tadsstore.spring.config.SecurityConfig;
 import br.senac.tads4.dsw.tadsstore.spring.model.Papel;
-import java.util.Map;
-import java.util.LinkedHashMap;
-import java.util.Arrays;
 import br.senac.tads4.dsw.tadsstore.spring.model.Usuario;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,13 +28,16 @@ public class UsuarioService implements UserDetailsService {
   static {
     USUARIOS = new LinkedHashMap<>();
     USUARIOS.put("fulano", 
-	    new Usuario("Fulano da Silva", "fulano", SecurityConfig.passwordEncoder().encode("abcd1234"), 
+	    new Usuario("Fulano da Silva", "fulano", 
+		    SecurityConfig.passwordEncoder().encode("abcd1234"), 
 		    Arrays.asList(new Papel("ROLE_FODINHA"))));
     USUARIOS.put("ciclano",
-	    new Usuario("Ciclano de Souza", "ciclano", SecurityConfig.passwordEncoder().encode("abcd1234"), 
+	    new Usuario("Ciclano de Souza", "ciclano", 
+		    SecurityConfig.passwordEncoder().encode("abcd1234"), 
 		    Arrays.asList(new Papel("ROLE_FODINHA"), new Papel("ROLE_FODAO"))));
     USUARIOS.put("beltrana",
-	    new Usuario("Beltrana das Cruzes", "beltrana", SecurityConfig.passwordEncoder().encode("abcd1234"), 
+	    new Usuario("Beltrana das Cruzes", "beltrana", 
+		    SecurityConfig.passwordEncoder().encode("abcd1234"), 
 		    Arrays.asList(new Papel("ROLE_FODINHA"), new Papel("ROLE_FODAO"), 
 			    new Papel("ROLE_GOD"))));
   }

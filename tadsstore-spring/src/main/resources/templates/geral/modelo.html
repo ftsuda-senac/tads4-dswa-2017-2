@@ -34,6 +34,16 @@
 	    <li><a href="#" th:href="@{/produto(lang=pt_BR)}">Português</a></li>
 	    <li><a href="#" th:href="@{/produto(lang=en)}">English</a></li>
 	  </ul>
+	  <div class="nav navbar-nav" style="color: #fff">
+	    <p th:text="${#authentication.principal.nomeCompleto}"></p>
+	    <p sec:authentication="principal.nomeCompleto"></p>
+	    <p sec:authentication="principal.senha"></p>
+	    <div>
+	      <form th:action="@{/logout}" method="post">
+		<button type="submit">Sair</button>
+	      </form>
+	    </div>
+	  </div>
         </div><!--/.nav-collapse -->
 	
       </div>
