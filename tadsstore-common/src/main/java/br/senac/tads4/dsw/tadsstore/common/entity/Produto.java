@@ -87,8 +87,9 @@ public class Produto implements Serializable {
 
   @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY,
 	  cascade = {CascadeType.REMOVE})
+
   private Set<ImagemProduto> imagens;
-  
+
   @Transient
   private Set<Integer> idsCategorias;
 

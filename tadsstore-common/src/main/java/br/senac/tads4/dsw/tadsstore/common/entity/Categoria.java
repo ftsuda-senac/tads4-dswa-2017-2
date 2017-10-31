@@ -23,6 +23,7 @@
  */
 package br.senac.tads4.dsw.tadsstore.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import java.util.Objects;
@@ -61,6 +62,7 @@ public class Categoria implements Serializable {
   private String nome;
 
   @ManyToMany(mappedBy = "categorias", fetch = FetchType.LAZY)
+  @JsonIgnore
   private Set<Produto> produtos;
 
   public Categoria() {
