@@ -7,9 +7,7 @@ package br.senac.tads4.dsw.tadsstore.spring.controller;
 
 import br.senac.tads4.dsw.tadsstore.common.entity.Categoria;
 import java.util.List;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.senac.tads4.dsw.tadsstore.common.entity.Produto;
 import br.senac.tads4.dsw.tadsstore.common.service.CategoriaService;
@@ -25,12 +23,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author fernando.tsuda
  */
-@Controller
+@RestController
 @RequestMapping("/rest/produto")
 public class RestProdutoController {
 
@@ -41,20 +40,29 @@ public class RestProdutoController {
   private CategoriaService categoriaService;
 
   @RequestMapping(method = RequestMethod.GET)
-  public @ResponseBody
-  List<Produto> listar() {
+  public List<Produto> listar() {
     List<Produto> lista = service.listar(0, 100);
     return lista;
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   @CrossOrigin(origins = "*")
-  public @ResponseBody
-  Produto mostrarDetalhe(@PathVariable("id") long id) {
+  public Produto mostrarDetalhe(@PathVariable("id") long id) {
     Produto p = service.obter(id);
     return p;
   }
 
+  
+  /*
+  Exemplo JSON para POST:
+  {
+  "nome": "Teste REST",
+  "descricao": "produto adicionado via REST",
+  "preco": 123.45,
+  "idsCategorias": [1,2, 3] 
+  }
+  */
+  
   @RequestMapping(method = RequestMethod.POST)
   public ResponseEntity<Produto> salvar(@RequestBody Produto p) {
     if (p != null) {
